@@ -4,26 +4,18 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Body from './components/Body';
 import Login from './components/Login';
 import Browse from './components/Browse';
-
+import { Provider } from 'react-redux';
+import appStore from './utils/appstore';
 // Define the router with nested routes
-export const appRouter = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />, // Render Body here, which will include the Outlet
-    children: [
-      { path: '/', element: <Body></Body> }, // You can customize this
-      { path: '/login', element: <Login /> },
-      { path: '/browse', element: <Browse /> },
-    ]
-  },
-]);
 function App()
 {
   return (
     <div className="App">
       {/* <Header />
       <Outlet></Outlet> */}
-      <Body></Body>
+      <Provider store={appStore}>
+        <Body></Body>
+      </Provider>
     </div>
   );
 }
